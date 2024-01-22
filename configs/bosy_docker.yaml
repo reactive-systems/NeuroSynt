@@ -1,0 +1,38 @@
+symbolic_solver:
+  tool: bosy
+  tool_run_args:
+    "timeout": 120
+    "--optimize": ""
+  service_args:
+    "cpu_count": 12
+    "mem_limit": "2g"
+    "start_containerized_service": True
+    "start_service": False
+    "start_up_timeout": 60
+    "channel_ready_timeout": 15
+model_checker:
+  tool: spot
+  tool_run_args:
+    "timeout": 10
+  service_args:
+    "cpu_count": 1
+    "mem_limit": "2g"
+    "start_containerized_service": True
+    "start_service": False
+    "start_up_timeout": 60
+    "channel_ready_timeout": 15
+neural_solver:
+  tool: ml2solver
+  service_args:
+    "nvidia_gpus": False
+    "mem_limit": "10g"
+    "start_containerized_service": True
+    "start_service": False
+  tool_setup_args:
+    "batch_size": 1
+    "alpha": 0.5
+    "num_properties": 40
+    "length_properties": 70
+    "beam_size": 16
+    "check_setup": True
+    "model": "ht-50"
